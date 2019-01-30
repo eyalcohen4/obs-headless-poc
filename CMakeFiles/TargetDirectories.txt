@@ -1,0 +1,3 @@
+/home/myplay/dev/obs-headless-poc/CMakeFiles/rebuild_cache.dir
+/home/myplay/dev/obs-headless-poc/CMakeFiles/app.dir
+/home/myplay/dev/obs-headless-poc/CMakeFiles/edit_cache.dir
