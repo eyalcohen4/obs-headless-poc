@@ -15,8 +15,10 @@
 
     			luajit-5.1-dev swig python3.6-dev
 
+        # Clone this repository
+        $ git clone https://bitbucket.org/eyal-myplay/obs-headless-poc
 
-    	# Install obs-studio (the DISABLE_UI part is important)
+    	# Install obs-studio inside the repository folder (the DISABLE_UI part is important) 
     	$ git clone --recursive https://github.com/obsproject/obs-studio.git
 
     	$ cd obs-studio
