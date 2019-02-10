@@ -8,7 +8,7 @@ obs_video_info create_ovi() {
     struct obs_video_info ovi;
 
     ovi.adapter = 0;
-    ovi.graphics_module = DL_OPENGL;
+    ovi.graphics_module = "libobs-opengl";
     ovi.output_format = VIDEO_FORMAT_I420;
     ovi.fps_num = 30000;
     ovi.fps_den = 1000;
@@ -35,10 +35,9 @@ void initialize_obs() {
         struct obs_video_info ovi = create_ovi();
 
         obs_startup("en-US", nullptr, nullptr);
-        obs_initialized();
 
-        obs_reset_video(&ovi);
         obs_reset_audio(&oai);
+        obs_reset_video(&ovi);
 
         if (obs_initialized()) {
             cout << "OBS Initialized Successfully \n";
@@ -92,7 +91,7 @@ int main() {
             << "\"}";
 
         initialize_obs();
-        load_modules();
+        // load_modules();
 
         obs_scene_t* scene = obs_scene_create("main");
 
