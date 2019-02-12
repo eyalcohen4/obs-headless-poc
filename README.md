@@ -1,6 +1,7 @@
 ## Instructions
 
-1.  [Build OBS-Studio](https://github.com/obsproject/obs-studio/wiki/Install-Instructions#debian-based-build-directions):
+1. Clone This Repository
+2. Inside This Repository Directory, [Build OBS-Studio](https://github.com/obsproject/obs-studio/wiki/Install-Instructions#debian-based-build-directions):
 
 
     	$ sudo apt-get install build-essential pkg-config cmake git-core checkinstall
@@ -23,7 +24,7 @@
 
     	$ mkdir build && cd build
 
-    	$ cmake -DUNIX_STRUCTURE=1 DISABLE_UI=true -DCMAKE_INSTALL_PREFIX=/usr ..
+    	$ cmake -DUNIX_STRUCTURE=1 -DDISABLE_UI=true -DCMAKE_INSTALL_PREFIX=/usr ..
 
     	$ make -j4
 
@@ -31,7 +32,7 @@
 
     	--pkgversion="\$(date +%Y%m%d)-git" --deldoc=yes
 
-2.  Compile and run
+3.  Compile and run
 
         $ mkdir build && cd build
 
