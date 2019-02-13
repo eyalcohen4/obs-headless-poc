@@ -7,15 +7,15 @@ using namespace std;
 obs_video_info create_ovi() {
     struct obs_video_info ovi;
 
-    ovi.adapter = 0;
+    ovi.adapter = 1;
     ovi.graphics_module = "libobs-opengl";
     ovi.output_format = VIDEO_FORMAT_I420;
     ovi.fps_num = 30000;
     ovi.fps_den = 1000;
     ovi.base_width = 640;
     ovi.base_height = 360;
-    ovi.output_width = 640;
-    ovi.output_height = 360;
+    ovi.output_width = 700;
+    ovi.output_height = 400;
 
     return ovi;
 }
@@ -34,10 +34,13 @@ void initialize_obs() {
         struct obs_audio_info oai = create_oai();
         struct obs_video_info ovi = create_ovi();
 
+        
         obs_startup("en-US", nullptr, nullptr);
 
+        int ret = obs_reset_video(&ovi);
+        cout << ret;
         obs_reset_audio(&oai);
-        obs_reset_video(&ovi);
+        
 
         if (obs_initialized()) {
             cout << "OBS Initialized Successfully \n";

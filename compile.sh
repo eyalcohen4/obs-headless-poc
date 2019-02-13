@@ -1,1 +1,1 @@
-g++ -I ./obs-studio/libobs/ -I ./obs-studio/libobs-opengl ./src/main.cpp -lGL -lglut -lGLU -DROOT_DIR=""  -g -L ./obs-studio/build/libobs -lobs -L ./obs-studio/build/libobs-opengl/ -lX11 -Wl,-R ./obs-studio/build/libobs -Wl,-R ./obs-studio/build/libobs-opengl/ -o ./build/app
+g++ -I ./obs-studio/libobs/ ./src/main.cpp -lGL -lglut -lGLU -lobs -lX11 -o ./build/app -g -DROOT_DIR=""  
