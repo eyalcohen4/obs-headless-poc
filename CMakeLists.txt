@@ -1,25 +1,45 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 2.8)
 
-project(obs_headless_poc)
+project(obs_headless)
 
-add_definitions(-DDL_OPENGL="${CMAKE_CURRENT_SOURCE_DIR}/obs-studio/build/libobs-opengl/libobs-opengl")
-add_definitions(-DROOT_DIR="${CMAKE_CURRENT_SOURCE_DIR}")
+find_package(Qt5X11Extras REQUIRED)
+find_package(Qt5Widgets ${FIND_MODE})
 
-set(obs_include_dir ${CMAKE_CURRENT_SOURCE_DIR}/obs-studio/libobs/)
-set(obs_lib_dir     ${CMAKE_CURRENT_SOURCE_DIR}/obs-studio/build/libobs/)
+if(NOT Qt5Widgets_FOUND)
+    message(FATAL_ERROR "Failed to find Qt5")
+endif()
 
-find_package(OpenGL REQUIRED)
-include_directories(${OPENGL_INCLUDE_DIRS})
 
-include_directories(/home/myplay/dev/obs-headless-poc/obs-studio/libobs)
-link_directories(/home/myplay/dev/obs-headless-poc/obs-studio/build/libobs)
+add_definitions(-std=c++11)
+add_definitions(-DDL_OPENGL="${CMAKE_SOURCE_DIR}/obs-studio/build/libobs-opengl/libobs-opengl")
+add_definitions(-DROOT_DIR="")
 
-include_directories(/home/myplay/dev/obs-headless-poc/obs-studio/libobs-opengl)
-link_directories(/home/myplay/dev/obs-headless-poc/obs-studio/build/libobs-opengl)
+set(obs_include_dir ${CMAKE_SOURCE_DIR}/obs-studio/libobs/)
+set(obs_lib_dir     ${CMAKE_SOURCE_DIR}/obs-studio/build/libobs/)
 
-file(GLOB SOURCES 
-  "./src/*.h"
-  "./src/*.cpp")
+message(INFO " CMAKE_SOURCE_DIR = ${CMAKE_SOURCE_DIR}")
+message(INFO " obs_include_dir = ${obs_include_dir}")
+message(INFO " obs_lib_dir = ${obs_lib_dir}")
 
-add_executable(app ${SOURCES})
-target_link_libraries(app /home/myplay/dev/obs-headless-poc/obs-studio/build/libobs/libobs.so /home/myplay/dev/obs-headless-poc/obs-studio/build/libobs-opengl/libobs-opengl.so)
+include_directories("${obs_include_dir}")
+link_directories("${obs_lib_dir}")
+
+#######################################
+
+set(obs_SOURCES
+    src/main.cpp
+    #main_toukimarche.cpp
+)
+
+
+######################################
+
+add_executable(obs_headless
+    ${obs_SOURCES}
+    ${obs_HEADERS})
+
+target_link_libraries(obs_headless
+    obs
+    pthread
+    Qt5::Widgets
+)

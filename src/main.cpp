@@ -2,6 +2,10 @@
 #include <iostream>
 #include <sstream>
 
+#include <QApplication>
+#include <QPushButton>
+
+
 using namespace std;
 
 obs_video_info create_ovi() {
@@ -80,8 +84,11 @@ void load_modules() {
     }
 }
 
-int main() {
+int main(int argc, char *argv[]) {
     cout << "This is an executable running right now! \n";
+
+    QApplication app(argc, argv);
+    QPushButton hello("Hello world!");
 
     try {
         obs_data_t* rtmp_settings;
