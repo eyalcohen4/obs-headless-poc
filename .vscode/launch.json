@@ -5,11 +5,12 @@
   "version": "0.2.0",
   "configurations": [
     
+    
     {
       "name": "(gdb) Launch",
       "type": "cppdbg",
       "request": "launch",
-      "program": "${workspaceFolder}/build/app",
+      "program": "${workspaceFolder}/build/obs_headless",
       "args": [],
       "stopAtEntry": false,
       "cwd": "${workspaceFolder}",

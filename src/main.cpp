@@ -11,7 +11,7 @@ using namespace std;
 obs_video_info create_ovi() {
     struct obs_video_info ovi;
 
-    ovi.adapter = 1;
+    ovi.adapter = 0;
     ovi.graphics_module = "libobs-opengl";
     ovi.output_format = VIDEO_FORMAT_I420;
     ovi.fps_num = 30000;
@@ -43,6 +43,8 @@ void initialize_obs() {
 
         int ret = obs_reset_video(&ovi);
         cout << ret;
+
+        if (ret == )
         obs_reset_audio(&oai);
         
 
@@ -101,7 +103,7 @@ int main(int argc, char *argv[]) {
             << "\"}";
 
         initialize_obs();
-        // load_modules();
+        load_modules();
 
         obs_scene_t* scene = obs_scene_create("main");
 
@@ -109,14 +111,17 @@ int main(int argc, char *argv[]) {
             throw string("Couldn't create main scene");
         }
 
-        output = obs_output_create("ffmpeg_output", "ffmpeg output", nullptr,
-                                   nullptr);
-        obs_data_t* settings = obs_data_create();
-        obs_data_set_string(settings, "format_name", "avi");
-        obs_data_set_string(settings, "video_encoder", "utvideo");
-        obs_data_set_string(settings, "audio_encoder", "pcm_s16le");
+      
+        // obs_data_t* settings = obs_data_create();
+        // obs_data_set_string(settings, "format_name", "avi");
+        // obs_data_set_string(settings, "video_encoder", "utvideo");
+        // obs_data_set_string(settings, "audio_encoder", "pcm_s16le");
 
-        obs_output_update(output, settings);
+        // output = obs_output_create("ffmpeg_output", "simple_ffmpeg_output", settings,
+        //                            nullptr);
+
+        // output
+        output = obs_output_create("rtmp_output", "rtmp output", NULL, nullptr);
 
         obs_set_output_source(0, obs_scene_get_source(scene));
         // service = obs_service_create("flv_service", "flv output", NULL,
@@ -126,6 +131,7 @@ int main(int argc, char *argv[]) {
         if (obs_output_start(output) != true) {
             cout << "obs_output_start failed \n";
 
+            cout << output;
             const char* error = obs_output_get_last_error(output);
 
             if (error) {

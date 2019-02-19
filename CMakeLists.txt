@@ -12,7 +12,7 @@ endif()
 
 add_definitions(-std=c++11)
 add_definitions(-DDL_OPENGL="${CMAKE_SOURCE_DIR}/obs-studio/build/libobs-opengl/libobs-opengl")
-add_definitions(-DROOT_DIR="")
+add_definitions(-DROOT_DIR="/home/test/dev/obs-headless-poc")
 
 set(obs_include_dir ${CMAKE_SOURCE_DIR}/obs-studio/libobs/)
 set(obs_lib_dir     ${CMAKE_SOURCE_DIR}/obs-studio/build/libobs/)
